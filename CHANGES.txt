@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.1-dev (unreleased)
---------------------
+0.1 (2014-01-30)
+----------------
 
 - Initial import based on server.dmsmail buildout
   [cedric & jfroche]
