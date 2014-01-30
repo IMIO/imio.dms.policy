@@ -4,5 +4,5 @@ Changelog
 0.1-dev (unreleased)
 --------------------
 
-- Package created using templer
-  []
+- Initial import based on server.dmsmail buildout
+  [cedric & jfroche]
