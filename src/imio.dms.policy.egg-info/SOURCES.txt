@@ -1,0 +1,12 @@
+README.txt
+setup.py
+src/imio/__init__.py
+src/imio.dms.policy.egg-info/PKG-INFO
+src/imio.dms.policy.egg-info/SOURCES.txt
+src/imio.dms.policy.egg-info/dependency_links.txt
+src/imio.dms.policy.egg-info/namespace_packages.txt
+src/imio.dms.policy.egg-info/not-zip-safe
+src/imio.dms.policy.egg-info/requires.txt
+src/imio.dms.policy.egg-info/top_level.txt
+src/imio/dms/__init__.py
+src/imio/dms/policy/__init__.py
