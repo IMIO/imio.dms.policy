@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3-1 (unreleased)
+0.3-1 (2014-12-22)
 ------------------
 
 - Removed collective.z3cform.rolefield.
