@@ -7,5 +7,7 @@
     <include package="five.z2monitor"/>
     <include package="Products.ZNagios" file="zcmonitor.zcml"/>
     <include package="zc.z3monitor"/>
+    <include package="collective.monitor"/>
+    <include package="collective.usernamelogger" />
 
 </configure>
