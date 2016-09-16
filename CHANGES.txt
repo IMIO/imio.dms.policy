@@ -4,7 +4,7 @@ Changelog
 1.1-2 (unreleased)
 ------------------
 
-- Added collective.usernamelogger.
+- Added collective.usernamelogger, collective.externaleditor.
   [sgeulette]
 
 1.1-1 (2016-04-15)
