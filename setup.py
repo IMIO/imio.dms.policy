@@ -49,7 +49,6 @@ setup(name='imio.dms.policy',
           'communesplone.layout',
           'plonetheme.imioapps',
           'five.z2monitor',
-          'ftw.labels',
           'Products.ZNagios',
           'zc.z3monitor'
       ])
