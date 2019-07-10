@@ -4,7 +4,7 @@ Changelog
 2.0-2 (unreleased)
 ----------------------
 
-- Added ftw.labels.
+- Added collective.contact.importexport.
   [sgeulette]
 
 2.0-1 (2017-05-30)
