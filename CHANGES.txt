@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.3-2 (unreleased)
-------------------
+2.3.post2 (2020-11-05)
+----------------------
 
 - Added imio.transmogrifier.contact.
   [sgeulette]
