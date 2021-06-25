@@ -4,8 +4,8 @@ Changelog
 2.3.post3 (unreleased)
 ----------------------
 
-- Nothing changed yet.
-
+- Added Products.PloneHotfix20210518.
+  [sgeulette]
 
 2.3.post2 (2020-11-05)
 ----------------------

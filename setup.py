@@ -51,6 +51,7 @@ setup(name='imio.dms.policy',
           'imio.transmogrifier.contact',
           'plonetheme.imioapps',
           'five.z2monitor',
+          'Products.PloneHotfix20210518',
           'Products.ZNagios',
           'zc.z3monitor'
       ])
