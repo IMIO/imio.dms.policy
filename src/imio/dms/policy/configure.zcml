@@ -4,7 +4,6 @@
     <include package="collective.iconifieddocumentactions"/>
     <include package="imio.dms.mail"/>
     <include package="collective.contact.importexport" />
-    <include package="plonetheme.imioapps"/>
     <include package="five.z2monitor"/>
     <include package="ftw.labels"/>
     <include package="imio.transmogrifier.contact"/>
