@@ -1,6 +1,12 @@
 Changelog
 =========
 
+3.0.post1 (unreleased)
+----------------------
+
+- Nothing changed yet.
+
+
 3.0 (2021-08-27)
 ----------------
 
