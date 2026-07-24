@@ -4,7 +4,8 @@ Changelog
 3.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Collabora patch for simpler dev setup. (DMS-1106)
+  [chris-adam]
 
 
 3.0.1 (2023-05-12)
