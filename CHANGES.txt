@@ -6,6 +6,8 @@ Changelog
 
 - Add Collabora patch for simpler dev setup. (DMS-1106)
   [chris-adam]
+- Fixed preview reload when a zope admin edits a file through Collabora. (DMS-1227)
+  [chris-adam]
 
 
 3.0.1 (2023-05-12)

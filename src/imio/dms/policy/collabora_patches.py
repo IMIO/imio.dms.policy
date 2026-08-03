@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Env-gated dev tweak to collective.collabora, kept out of that pristine upstream.
+"""Patches for collective.collabora, applied from this package's __init__.
 
-Localhost dev bypass (COLLABORA_DEV_MODE only): collective.collabora refuses a
-``plone_server_url`` on localhost/127.0.0.1, because a containerized Collabora
-would then reach itself. Our dev container runs with ``network_mode: host``
-(docker/docker-compose.yaml), so localhost IS the host's Plone and the guard is
-a false positive. Production never sets COLLABORA_DEV_MODE, so the upstream
-protection stays intact there.
-
-The always-on "field shadings by default" behaviour is NOT here anymore: it is
-a viewlet in imio.dms.mail (CollaboraFieldShadingsViewlet), registered under a
-``zcml:condition`` on collective.collabora.
+- _record_async_user_folder: always on.
+- _allow_localhost_dev: only when COLLABORA_DEV_MODE is set. Our dev container
+  runs with network_mode: host, so upstream's localhost guard is a false
+  positive there.
 """
 from logging import getLogger
 
@@ -21,6 +15,7 @@ logger = getLogger(__name__)
 
 
 def apply():
+    _record_async_user_folder()
     if not os.environ.get("COLLABORA_DEV_MODE"):
         return
     try:
@@ -29,6 +24,47 @@ def apply():
         logger.debug("collective.collabora not available; skipping dev patch.")
         return
     _allow_localhost_dev(CollaboraEditView)
+
+
+def _record_async_user_folder():
+    """Queue async jobs against the acl_users that really holds the user.
+
+    Collabora's WOPI callback runs the Zope root admin against the site
+    acl_users, which does not know it, so the worker could not restore the user
+    and no preview was rebuilt (DMS-1227).
+    """
+    try:
+        from plone.app.async import service
+    except ImportError:
+        # No async at all, as in the dev buildout: conversions run inline.
+        logger.debug("plone.app.async not available; skipping async user patch.")
+        return
+
+    from AccessControl.SecurityManagement import getSecurityManager
+
+    original = service._getAuthenticatedUser
+
+    def _getAuthenticatedUser():
+        """Same as upstream, but fall back to the Zope root acl_users."""
+        uf_path, user_id = original()
+        if not uf_path:
+            return uf_path, user_id
+        acl_users = getSecurityManager().getUser().aq_parent
+        if acl_users.getUserById(user_id) is not None:
+            return uf_path, user_id
+        root_uf = getattr(acl_users.getPhysicalRoot(), "acl_users", None)
+        if root_uf is None or root_uf.getUserById(user_id) is None:
+            # Unknown everywhere: leave it, so the worker says so plainly.
+            return uf_path, user_id
+        logger.info(
+            "User %r is unknown to %r but is a Zope root user: queueing the "
+            "job against the root acl_users.",
+            user_id,
+            "/".join(uf_path),
+        )
+        return root_uf.getPhysicalPath(), user_id
+
+    service._getAuthenticatedUser = _getAuthenticatedUser
 
 
 def _allow_localhost_dev(CollaboraEditView):
