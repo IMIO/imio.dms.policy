@@ -50,9 +50,7 @@ class TestConfigure(unittest.TestCase):
         self.assertProfile("ftw.labels:default")
 
     def test_imio_transmogrifier_contact(self):
-        self.assertIsNotNone(
-            queryUtility(ISectionBlueprint, "imio.transmogrifier.contact.plonegrouporganizationpath")
-        )
+        self.assertIsNotNone(queryUtility(ISectionBlueprint, "imio.transmogrifier.contact.plonegrouporganizationpath"))
 
     def test_imio_transmogrifier_iadocs(self):
         self.assertIsNotNone(queryUtility(ISectionBlueprint, "imio.transmogrifier.iadocs.a_service_update"))
