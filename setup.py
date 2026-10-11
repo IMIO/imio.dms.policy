@@ -55,4 +55,9 @@ setup(name='imio.dms.policy',
           'Products.PloneHotfix20210518',
           'Products.ZNagios',
           'zc.z3monitor'
-      ])
+      ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+          ],
+      })

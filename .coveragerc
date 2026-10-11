@@ -1,0 +1,5 @@
+[report]
+include =
+    src/imio/dms/policy/*
+omit =
+    */tests/*
