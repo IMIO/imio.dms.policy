@@ -37,3 +37,5 @@ var/
 CACHEDIR.TAG
 *.egg-info
 dist/
+# written by collective.contact.importexport (tests, site creation)
+pipeline.cfg

@@ -9,22 +9,26 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         include:
-          - python: 2.7.18
-            plone: "4.3"
+          - python: 3.13.1
+            plone: "6.2"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install system packages
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libjpeg-dev libbz2-dev
+          sudo apt-get update -qq -y
+          sudo apt-get install -qq -y g++ gcc make cmake build-essential libreadline-dev zlib1g-dev libbz2-dev libjpeg-dev libpng-dev git libpq-dev libxml2-dev libxslt1-dev libssl-dev pkg-config graphviz libgraphviz-dev odt2txt graphicsmagick wv poppler-utils
       - name: Set up pyenv and Python
         uses: "gabrielfalcao/pyenv-action@v18"
         with:
@@ -49,20 +53,20 @@ jobs:
         run: |
           bin/test -t !robot
   coverage:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         include:
-          - python: 2.7.18
-            plone: "4.3"
+          - python: 3.13.1
+            plone: "6.2"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install system packages
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libjpeg-dev libbz2-dev
+          sudo apt-get update -qq -y
+          sudo apt-get install -qq -y g++ gcc make cmake build-essential libreadline-dev zlib1g-dev libbz2-dev libjpeg-dev libpng-dev git libpq-dev libxml2-dev libxslt1-dev libssl-dev pkg-config graphviz libgraphviz-dev odt2txt graphicsmagick wv poppler-utils
       - name: Set up pyenv and Python
         uses: "gabrielfalcao/pyenv-action@v18"
         with:
@@ -71,7 +75,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements-${{matrix.plone}}.txt
-          pip install coverage==5.3.1
+          pip install -U coveralls coverage
       - name: Cache eggs
         uses: actions/cache@v4
         env:
@@ -89,15 +93,6 @@ jobs:
       - name: test coverage
         run: |
           coverage run bin/test -t !robot
-      # coveralls needs Python 3: publish with a separate interpreter (phase 7 moves this job to 6.2)
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.8
-      - name: Install Coveralls
-        run: |
-          pip3 install -U pip setuptools --no-cache-dir
-          pip3 install -U "coveralls<4.0.0" coverage==5.3.1 --no-cache-dir
       - name: Publish to Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

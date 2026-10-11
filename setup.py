@@ -1,6 +1,8 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
 
-version = "3.0.2.dev0"
+
+version = "4.0.0.dev0"
 
 long_description = (
     open("README.txt").read() + "\n" + "Contributors\n"
@@ -13,43 +15,40 @@ setup(
     description="DMS policy containing all packages required for dms to work",
     long_description=long_description,
     classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: 6.2",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
     keywords="Plone Python IMIO",
     author="IMIO",
     author_email="support@imio.be",
-    url="http://svn.communesplone.org/svn/communesplone/imio.dms.policy",
+    url="https://github.com/IMIO/imio.dms.policy",
     license="gpl",
     packages=find_packages("src"),
     package_dir={"": "src"},
-    namespace_packages=["imio", "imio.dms"],
     include_package_data=True,
     zip_safe=False,
+    python_requires=">=3.10",
     install_requires=[
-        "setuptools",
         "Plone",
         "Pillow",
         "imio.dms.mail",
         "imio.pyutils",
         "Products.CPUtils",
-        "Products.DocFinderTab",
         "collective.behavior.internalnumber",
-        "collective.ckeditor",
         "collective.contact.importexport",
         "collective.externaleditor",
-        "collective.iconifieddocumentactions",
         "collective.messagesviewlet",
-        "collective.monitor",
-        "collective.usernamelogger",
         "communesplone.layout",
         "imio.transmogrifier.contact",
         "imio.transmogrifier.iadocs",
         "plonetheme.imioapps",
-        "five.z2monitor",
-        "Products.PloneHotfix20210518",
-        "Products.ZNagios",
-        "zc.z3monitor",
     ],
     extras_require={
         "test": [

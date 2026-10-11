@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 
-import ftw.labels
 import imio.dms.policy
 
 
@@ -13,8 +11,6 @@ class ImioDmsPolicyLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        # in the instance, z3c.autoinclude (target plone) loads ftw.labels first: imio.dms.mail unconfigures its indexer
-        self.loadZCML(package=ftw.labels)
         self.loadZCML(package=imio.dms.policy)
 
 
