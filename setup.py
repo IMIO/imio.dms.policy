@@ -27,7 +27,7 @@ setup(
     ],
     keywords="Plone Python IMIO",
     author="IMIO",
-    author_email="support@imio.be",
+    author_email="support-docs@imio.be",
     url="https://github.com/IMIO/imio.dms.policy",
     license="gpl",
     packages=find_packages("src"),
