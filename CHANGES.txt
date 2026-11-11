@@ -4,7 +4,12 @@ Changelog
 3.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Collabora patch for simpler dev setup. (DMS-1106)
+  [chris-adam]
+- Fixed preview reload when a zope admin edits a file through Collabora. (DMS-1227)
+  [chris-adam]
+- Fixed document created by Plone Member cannot be edited by admin through Collabora. (DMS-1228)
+  [chris-adam]
 
 
 3.1.0 (2026-11-11)
