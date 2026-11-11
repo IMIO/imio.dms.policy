@@ -53,6 +53,7 @@ setup(name='imio.dms.policy',
           'plonetheme.imioapps',
           'five.z2monitor',
           'Products.PloneHotfix20210518',
+          'products-plonehotfix20261110',
           'Products.ZNagios',
           'zc.z3monitor'
       ])
