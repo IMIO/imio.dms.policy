@@ -1,4 +1,6 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
 
 version = '3.0.2.dev0'
 
@@ -53,6 +55,7 @@ setup(name='imio.dms.policy',
           'plonetheme.imioapps',
           'five.z2monitor',
           'Products.PloneHotfix20210518',
+          'products-plonehotfix20261110',
           'Products.ZNagios',
           'zc.z3monitor'
       ])
