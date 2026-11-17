@@ -11,6 +11,8 @@ Changelog
   Products.PloneHotfix20210518 and collective.usernamelogger (Zope logs the user name in the WSGI access log).
   Added Plone 6.2 buildout, tests and GitHub Actions.
   [chris-adam]
+- Dropped horse-with-no-namespace: checked out the PEP 420 and pkgutil branches of the namespace packages.
+  [chris-adam]
 
 
 3.0.1 (2023-05-12)
